@@ -1,6 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\StudentController;
+use App\Http\Controllers\LecturerController;
+
+// akses controller
+Route::get('/student', [StudentController::class, 'index']);
+Route::resource('lecturer', LecturerController::class);
 
 Route::get('/welcome', function () {
     return view('welcome');
