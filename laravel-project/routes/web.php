@@ -4,6 +4,15 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\LecturerController;
 
+// layout
+Route::get('/dashboard', function () {
+    return view('dashboard');
+});
+
+Route::get('/base', function () {
+    return view('base');
+});
+
 // akses controller
 Route::get('/student', [StudentController::class, 'index']);
 Route::resource('lecturer', LecturerController::class);
