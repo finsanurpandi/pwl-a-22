@@ -1,51 +1,24 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\StudentController;
-use App\Http\Controllers\LecturerController;
 
-// layout
-Route::get('/dashboard', function () {
-    return view('dashboard');
-});
-
-Route::get('/base', function () {
-    return view('base');
-});
-
-// akses controller
-Route::get('/student', [StudentController::class, 'index']);
-Route::resource('lecturer', LecturerController::class);
-
-Route::get('/welcome', function () {
+Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/test', function () {
-    return view('test');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/user', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified', 'role:admin'])->name('user');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::redirect('/test-app', '/test');
-
-// Route::get('/test1/{name}', function ($name) {
-//     return "Welcome, ". $name;
-// });
-
-Route::get('/test2/{name?}', function ($name = null) {
-    if($name ==  null) {
-        return "Hello there..";
-    } else {
-        return "Welcome, ". $name;
-    }
-});
-
-Route::post('/test', function () {
-    return view('test');
-})->name('post.data');
-
-Route::prefix('user')
-    ->group(function() {
-        Route::get('/test1/{name}', function ($name) {
-            return "Welcome, ". $name;
-        }); // localhost:8000/user/test1/name
-    });
+require __DIR__.'/auth.php';

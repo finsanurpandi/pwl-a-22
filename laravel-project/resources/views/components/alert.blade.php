@@ -2,11 +2,11 @@
     $bg = '';
 
     if($type == 'info') {
-        $bg = 'mt-2 bg-blue-600 text-sm text-white rounded-lg p-4 dark:bg-blue-500';
+        $bg = 'mt-2 bg-blue-600 text-sm text-white rounded-lg p-4';
     } elseif($type == 'danger') {
-        $bg = 'mt-2 bg-red-600 text-sm text-white rounded-lg p-4 dark:bg-blue-500';
+        $bg = 'mt-2 bg-red-600 text-sm text-white rounded-lg p-4';
     } elseif ($type == 'success') {
-        $bg = 'mt-2 bg-teal-600 text-sm text-white rounded-lg p-4 dark:bg-blue-500';
+        $bg = 'mt-2 bg-teal-600 text-sm text-white rounded-lg p-4';
     }
 
 @endphp

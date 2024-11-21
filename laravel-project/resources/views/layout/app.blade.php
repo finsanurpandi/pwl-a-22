@@ -61,7 +61,7 @@
   @vite('resources/js/app.js')
 </head>
 
-<body class="bg-gray-50 dark:bg-neutral-900">
+<body class="bg-gray-50">
   @include('layout.part.header')
 
   <!-- ========== MAIN CONTENT ========== -->
