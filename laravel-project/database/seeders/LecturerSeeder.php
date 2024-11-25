@@ -26,6 +26,7 @@ class LecturerSeeder extends Seeder
                 'firstname' => $faker->firstName,
                 'lastname' => $faker->lastName,
                 'department_id' => $arr_departments[$department],
+                'is_active' => rand(0,1),
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
