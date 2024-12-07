@@ -16,6 +16,6 @@
         "vite": "^5.0"
     },
     "dependencies": {
-        "preline": "^2.5.0"
+        "preline": "^2.5.1"
     }
 }
