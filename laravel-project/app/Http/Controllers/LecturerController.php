@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Lecturer;
+use App\Models\Department;
 use App\Http\Requests\LecturerRequest;
 use App\Http\Requests\LecturerUpdateRequest;
 
@@ -14,7 +15,7 @@ class LecturerController extends Controller
      */
     public function index()
     {
-        $lecturers = Lecturer::paginate(10);
+        $lecturers = Lecturer::withCount('students')->paginate(10);
         $lecturers->withPath('/lecturer');
 
         $data['lecturers'] = $lecturers;
@@ -86,5 +87,16 @@ class LecturerController extends Controller
             ->delete();
 
         return redirect()->back();
+    }
+
+    // Relationship
+    public function students(string $id)
+    {
+        // $data['students'] = Lecturer::find($id)->students()->paginate(15);
+        // $data['lecturer'] = Lecturer::find($id);
+        
+        // return view('lecturer.students', $data);
+        $students = Department::find(2)->students;
+        dd($students);
     }
 }

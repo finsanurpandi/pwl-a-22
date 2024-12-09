@@ -21,6 +21,7 @@
                             <th>NIDN</th>
                             <th>Full Name</th>
                             <th>Prodi</th>
+                            <th>Jumlah Mhs</th>
                             <th>Action</th>
                         </x-slot>
                             @foreach($lecturers as $lecturer)
@@ -29,7 +30,11 @@
                                 <td>{{ $lecturer->nidn }}</td>
                                 <td>{{ $lecturer->fullname }}</td>
                                 <td>{{ $lecturer->department_id->getLabel() }}</td>
+                                <td>{{$lecturer->students_count }}</td>
                                 <td>
+                                    <x-primary-button element="a" href="{{ route('lecturer.students', $lecturer->id)}}">
+                                        MHS
+                                    </x-primary-button>
                                     <x-primary-button element="a" href="{{ route('lecturer.edit', $lecturer->id)}}">
                                         EDIT
                                     </x-primary-button>

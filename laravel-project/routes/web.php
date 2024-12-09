@@ -32,6 +32,7 @@ Route::name('lecturer.')
         Route::get('/{id}/edit', [LecturerController::class, 'edit'])->name('edit');
         Route::patch('/{id}/update', [LecturerController::class, 'update'])->name('update');
         Route::delete('/{id}/destroy', [LecturerController::class, 'destroy'])->name('destroy');
+        Route::get('/{id}/students', [LecturerController::class, 'students'])->name('students');
     });
 
 require __DIR__.'/auth.php';
