@@ -7,6 +7,8 @@ use App\Models\Lecturer;
 use App\Models\Department;
 use App\Http\Requests\LecturerRequest;
 use App\Http\Requests\LecturerUpdateRequest;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\TestMail;
 
 class LecturerController extends Controller
 {
@@ -92,11 +94,32 @@ class LecturerController extends Controller
     // Relationship
     public function students(string $id)
     {
-        // $data['students'] = Lecturer::find($id)->students()->paginate(15);
-        // $data['lecturer'] = Lecturer::find($id);
+        $data['students'] = Lecturer::find($id)->students()->paginate(15);
+        $data['lecturer'] = Lecturer::find($id);
         
-        // return view('lecturer.students', $data);
-        $students = Department::find(2)->students;
-        dd($students);
+        return view('lecturer.students', $data);
+        // $students = Department::find(2)->students;
+        // dd($students);
+    }
+
+    public function sendmail(string $id)
+    {
+        $lecturer = Lecturer::find($id);
+
+        $penerima = [
+            'penerima1@mail.com',
+            'penerima2@mail.com',
+            'penerima3@mail.com',
+            'penerima4@mail.com',
+            'penerima5@mail.com',
+        ];
+
+        foreach($penerima as $pen)
+        {
+            Mail::to($pen)->send(new TestMail($lecturer));
+        }
+        
+
+        return redirect()->back();
     }
 }

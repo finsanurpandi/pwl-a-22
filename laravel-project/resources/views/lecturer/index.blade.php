@@ -32,6 +32,9 @@
                                 <td>{{ $lecturer->department_id->getLabel() }}</td>
                                 <td>{{$lecturer->students_count }}</td>
                                 <td>
+                                    <x-primary-button element="a" href="{{ route('lecturer.sendmail', $lecturer->id)}}">
+                                        MAIL
+                                    </x-primary-button>
                                     <x-primary-button element="a" href="{{ route('lecturer.students', $lecturer->id)}}">
                                         MHS
                                     </x-primary-button>

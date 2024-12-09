@@ -40,7 +40,7 @@ class Lecturer extends Model
 
     public function students(): HasMany
     {
-        return $this->hasMany(Student::class, 'nidn', 'nidn');
+        return $this->hasMany(Student::class, 'nidn', 'nidn')->orderBy('nama_lengkap', 'DESC');
     }
 
     public function student(): HasOne
